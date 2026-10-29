@@ -1,0 +1,23 @@
+
+{
+  "name": "Chess IA",
+  "short_name": "Chess IA",
+  "description": "Seu assistente de xadrez",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#100f1b",
+  "theme_color": "#100f1b",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
