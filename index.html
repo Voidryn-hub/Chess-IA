@@ -1,139 +1,37 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Chess_IA</title>
+
   <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#100f1b">
 
   <style>
-    body {
-      background: #100f1b;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
     h1 {
       color: #c5efe6;
+      text-align: center;
+      font-size: 100px;
     }
 
-    button {
-      background: #6de97e;
-      color: #ffffff;
-      padding: 24px 48px;
-      border: none;
-      border-radius: 16px;
-      font-size: 20px;
+    body {
+      background: #0b091d;
     }
 
-    button:active {
-      background: #42b957;
-    }
-
-    button {
-      background: #6de97e;
-      color: #ffffff;
-      padding: 24px 48px;
-      border: none;
-      border-radius: 16px;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    button:active {
-      background: #42b957;
-    }
-
-    .controles-camera {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #fechar-camera {
-      padding: 12px 18px;
-      background: #e74c3c;
-      color: white;
-      border-radius: 12px;
-      font-size: 20px;
+    #config {
+      border: 100px;
+      font-size: 40px;
+      position: fixed;
+      top: 24px;
+      right: 25px;
     }
   </style>
 </head>
 
 <body>
   <h1>Chess IA</h1>
-  <div class="controles-camera">
-    <button id="botao-camera">Ligar Camera</button>
-    <button id="fechar-camera" aria-label="Desligar camera">X</button>
-  </div>
-  <p id="camera">Camera desligada</p>
-  <video id="video-camera" autoplay playsinline></video>
-
-  <div>
-    <button id="botao-tela">Compartilha tela</button>
-    <p id="tela">Compartilhamento desligado</p>
-    <video id="video-tela" autoplay playsinline></video>
-  </div>
-
-  <script>
-
-const botaoCamera = document.getElementById("botao-camera");
-const camera = document.getElementById("camera");
-const videoCamera = document.getElementById("video-camera");
-const fecharCamera = document.getElementById("fechar-camera");
-    
-let fluxoCamera = null;
-
-botaoCamera.addEventListener("click", async () => {
-  try {
-    camera.textContent = "Pedindo acesso à câmera...";
-
-    fluxoCamera = await navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: "environment"
-      },
-      audio: false
-    });
-    
-fecharCamera.addEventListener("click", () => {
-  if (fluxoCamera) {
-    fluxoCamera.getTracks().forEach(track => track.stop());
-
-    fluxoCamera = null;
-    videoCamera.srcObject = null;
-    camera.textContent = "Câmera desligada";
-  }
-});
-
-    videoCamera.srcObject = fluxoCamera;
-    videoCamera.style.width = "90%";
-    videoCamera.style.maxWidth = "400px";
-
-    camera.textContent = "Câmera ligada! 📷";
-  } catch (erro) {
-    camera.textContent = "Não foi possível abrir a câmera.";
-    console.log(erro);
-  }
-});
-
-  </script>
-
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(error => {
-        console.log("Erro ao registrar service worker:", error);
-      });
-  });
-}
-</script>
-
+  <button id="config">⚙️</button>
 </body>
 
 </html>
