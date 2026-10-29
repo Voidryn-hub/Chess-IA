@@ -43,6 +43,7 @@
 
     #painel-config {
       display: none;
+      z-index: 11;
 
       position: fixed;
       top: 50%;
@@ -94,13 +95,14 @@
       background: #252d3c44;
     }
     #fundo-config {
-  display: none;
+      display: none;
+      z-index: 10;
 
-  position: fixed;
-  inset: 0;
+      position: fixed;
+      inset: 0;
 
-  background-color: rgba(0, 0, 0, 0.6);
-}
+      background-color: rgba(0, 0, 0, 0.6);
+    }
     
   </style>
 </head>
@@ -118,7 +120,26 @@
     <button class="opcao-botao">🗣️Indioma</button>
     <button id="botao-song">🔊</button>
   </div>
+  <script>
     
+const botao = document.getElementById("botao-config");
+const fundo = document.getElementById("fundo-config");
+const painel = document.getElementById("painel-config");
+
+function abrirConfig() {
+  painel.style.display = "block";
+  fundo.style.display = "block";
+}
+
+function fecharConfig() {
+  painel.style.display = "none";
+  fundo.style.display = "none";
+}
+
+botao.onclick = abrirConfig;
+fundo.onclick = fecharConfig;
+
+  </script>
 </body>
 
 </html>
