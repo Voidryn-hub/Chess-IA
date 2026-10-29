@@ -9,29 +9,116 @@
   <link rel="manifest" href="./manifest.json">
 
   <style>
+    body {
+      background: #0b091d;
+      color: white;
+      font-family: Arial;
+    }
+
     h1 {
       color: #c5efe6;
       text-align: center;
       font-size: 100px;
     }
 
-    body {
-      background: #0b091d;
+    h2 {
+      text-align: center;
+      color: white;
     }
 
-    #config {
-      border: 100px;
+    #botao-config {
+      background: #4848656a;
+      border: none;
+      border-radius: 100%;
       font-size: 40px;
       position: fixed;
       top: 24px;
       right: 25px;
     }
+
+    #botao-config:active {
+      background: #0c101c;
+    }
+
+
+    #painel-config {
+      display: none;
+
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 80%;
+      max-width: 365px;
+
+      background-color: #151922;
+      color: white;
+
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .opcao-botao {
+      color: white;
+      background: #272d3c;
+      border: none;
+      border-radius: 59px;
+      font-size: 50px;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+    }
+
+
+    #botao-song {
+      display: block;
+
+      position: fixed;
+      top: 11%;
+      left: 5%;
+      background: #272d3c;
+      border: none;
+      font-size: 40px;
+      border-radius: 50%;
+      transform: translate(-10%, -30%);
+    }
+
+    .opcao-botao:active {
+      background: #252d3c44;
+    }
+
+    #botao-song:active {
+      background: #252d3c44;
+    }
+    #fundo-config {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
+}
+    
   </style>
 </head>
 
 <body>
   <h1>Chess IA</h1>
-  <button id="config">⚙️</button>
+  <button id="botao-config">⚙️</button>
+
+  <div id="fundo-config"></div>
+
+  <div id="painel-config">
+    <h2>Configuraçoes</h2>
+
+    <button class="opcao-botao">🎨Tema</button>
+    <button class="opcao-botao">🗣️Indioma</button>
+    <button id="botao-song">🔊</button>
+  </div>
+    
 </body>
 
 </html>
