@@ -109,8 +109,8 @@
 
 <body>
 
-  <audio id="musica" src="./song.mp3" loop autoplay></audio>
-  <audio id="som-click" src="./click.mp3"></audio>
+  <audio id="musica" src="./song.mp3" loop preload="auto"></audio>
+  <audio id="som-click" src="./click.mp3" preload="auto"></audio>
 
   <h1>Chess IA</h1>
   <button id="botao-config">⚙️</button>
@@ -150,6 +150,11 @@
       }
     }
     
+    function tocarClick() {
+      somClick.currentTime = 0;
+      somClick.play().catch(() => {});
+    }
+    
     function abrirConfig() {
       painel.style.display = "block";
       fundo.style.display = "block";
@@ -163,7 +168,9 @@
     botaoSom.onclick = alternarMusica;
     botao.onclick = abrirConfig;
     fundo.onclick = fecharConfig;
-
+    document.querySelectorAll("button").forEach(botao => {
+      botao.addEventListener("click", tocarClick);
+    });
   </script>
 </body>
 
