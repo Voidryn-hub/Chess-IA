@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Chess_IA</title>
+  <title>Chess IA</title>
 
   <link rel="manifest" href="./manifest.json">
 
@@ -18,12 +18,14 @@
     h1 {
       color: #c5efe6;
       text-align: center;
-      font-size: 100px;
+      font-size: 48px;
+      margin-top: 80px;
     }
 
     h2 {
       text-align: center;
       color: white;
+
     }
 
     #botao-config {
@@ -40,6 +42,19 @@
       background: #0c101c;
     }
 
+    .opcao-botao {
+      color: white;
+      background: #272d3c;
+      border: none;
+      border-radius: 59px;
+      width: 85%;
+      font-size: 50px;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+    }
 
     #painel-config {
       display: none;
@@ -58,33 +73,18 @@
 
       padding: 20px;
       border-radius: 15px;
+      box-shadow: 0 10px 40px #00000080;
     }
-
-    .opcao-botao {
-      color: white;
-      background: #272d3c;
-      border: none;
-      border-radius: 59px;
-      font-size: 50px;
-
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 10px;
-    }
-
 
     #botao-song {
-      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
 
-      position: fixed;
-      top: 11%;
-      left: 5%;
       background: #272d3c;
       border: none;
       font-size: 40px;
       border-radius: 50%;
-      transform: translate(-10%, -30%);
     }
 
     .opcao-botao:active {
@@ -94,6 +94,7 @@
     #botao-song:active {
       background: #252d3c44;
     }
+
     #fundo-config {
       display: none;
       z-index: 10;
@@ -103,11 +104,14 @@
 
       background-color: rgba(0, 0, 0, 0.6);
     }
-    
   </style>
 </head>
 
 <body>
+
+  <audio id="musica" src="./song.mp3" loop></audio>
+  <audio id="som-click" src="./click.mp3"></audio>
+
   <h1>Chess IA</h1>
   <button id="botao-config">⚙️</button>
 
@@ -116,28 +120,49 @@
   <div id="painel-config">
     <h2>Configuraçoes</h2>
 
-    <button class="opcao-botao">🎨Tema</button>
-    <button class="opcao-botao">🗣️Indioma</button>
+    <button class="opcao-botao" id="botao-tema">🎨Tema</button>
+    <button class="opcao-botao" id="botao-idioma">🗣️Idioma</button>
     <button id="botao-song">🔊</button>
   </div>
   <script>
+    const musica =document.getElementById("musica");
+    const botaoSom =document.getElementById("som-click");
     
-const botao = document.getElementById("botao-config");
-const fundo = document.getElementById("fundo-config");
-const painel = document.getElementById("painel-config");
+    const botao = document.getElementById("botao-config");
+    const fundo = document.getElementById("fundo-config");
+    const painel = document.getElementById("painel-config");
 
-function abrirConfig() {
-  painel.style.display = "block";
-  fundo.style.display = "block";
-}
+    const tema = document.getElementById("botao-tema")
+    const idioma = document.getElementById("botao-idioma")
+    const song = document.getElementById("botao-song")
 
-function fecharConfig() {
-  painel.style.display = "none";
-  fundo.style.display = "none";
-}
+    let musicaLigada = false;
 
-botao.onclick = abrirConfig;
-fundo.onclick = fecharConfig;
+    function alternarMusica() {
+      if (musicaLigada) {
+        musica.pause();
+        musicaLigada = false;
+        botaoSom.textContent = "🔇";
+      } else {
+        musica.play();
+        musicaLigada = true;
+        botaoSom.textContent = "🔊";
+      }
+    }
+    
+    function abrirConfig() {
+      painel.style.display = "block";
+      fundo.style.display = "block";
+    }
+
+    function fecharConfig() {
+      painel.style.display = "none";
+      fundo.style.display = "none";
+    }
+
+    botaoSom.onclick = alternarMusica;
+    botao.onclick = abrirConfig;
+    fundo.onclick = fecharConfig;
 
   </script>
 </body>
